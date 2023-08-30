@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, HttpResponseNotFound,Http404
 
 # Create your views here.
 
@@ -16,14 +16,16 @@ articles = {
     'politics': 'Politics Page'
 }
 
-
+#* Mixing python obj into views
 def news_view(request, topic):
-    # try:
-    #     return HttpResponse(f"<h1>{articles[topic]}<h1>")
-    # except:
-    #      print(f'[X] {articles[topic]} ')
-    #      HttpResponse("<h1>Page was found</h1>")
-    if articles.get(topic):
+    try:
+        # result = articles[topic]
         return HttpResponse(f"<h1>{articles[topic]}<h1>")
-    else:
-        return HttpResponse(f"<h2>Page <em>'{topic}'</em> not found,</h2>.")
+    except:
+         print(f'[X] {articles.get(topic)} ')
+         raise Http404("404 GENERIC ERROR")
+         #return HttpResponseNotFound(f"<h1>Page not found for topic: <em>{topic}</em></h1>")
+    # if articles.get(topic):
+    #     return HttpResponse(f"<h1>{articles[topic]}<h1>")
+    # else:
+    #     return HttpResponse(f"<h2>Page <em>'{topic}'</em> not found,</h2>.")
