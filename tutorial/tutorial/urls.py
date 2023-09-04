@@ -21,6 +21,7 @@ from . import views
 ################################################
 urlpatterns = [
     path('',views.projectIndex, name='Proj_Home'),
-    path('my_app/',include('my_app.urls')), #linking my_app route to project 
+    path('my_app/',include('my_app.urls')), #! linking my_app route to project 
+    path('office/',include('office.urls')), #! linking office route to project
     path('admin/', admin.site.urls),
 ]
