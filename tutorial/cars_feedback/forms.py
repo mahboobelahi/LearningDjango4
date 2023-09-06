@@ -13,4 +13,15 @@ from .models import Review
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['first_name','last_name','stars']
+        fields = "__all__"
+        labels = {
+            'first_name':"YOUR FIRST NAME",
+            'last_name':"Last Name",
+            'stars':'Rating'
+        }
+        error_messages = {
+            'stars':{
+                'min_value':'YO! Min value is 1.',
+                'max_value':'YO! YO! Max value is 5.'
+            }
+        }

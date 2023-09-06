@@ -15,7 +15,7 @@ def rental_review(request):
     else:
         form = ReviewForm()
     
-        return render(request, 'cars_feedback/rental_review.html',
+    return render(request, 'cars_feedback/rental_review.html',
                         context={'form': form})
 
 
