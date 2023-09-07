@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import (TemplateView,FormView,CreateView,ListView)
+from django.views.generic import (TemplateView,FormView,
+                                  CreateView,ListView,
+                                  DetailView,DeleteView,
+                                  UpdateView)
 from .forms import ContactForm
 from django.urls import reverse,reverse_lazy
 from .models import Teacher
@@ -21,7 +24,7 @@ class TeacherCreateView(CreateView):
     fields = '__all__'
     #* success URL 
     #!please not it is a url not template
-    success_url =reverse_lazy('classroom:greeting')# "/classroom/greeting/"
+    success_url =reverse_lazy('classroom:list_teacher')# "/classroom/greeting/"
 
 class TeacherListView(ListView):
     model = Teacher
@@ -32,6 +35,23 @@ class TeacherListView(ListView):
     #queryset = Teacher.objects.all() #!default quetset
     queryset = Teacher.objects.order_by('first_name')    #* custom queryset
 
+
+class TeacherDetailView(DetailView):
+    model = Teacher
+    #! looks for template <model-name_detail.html>
+    # * For a PK grab teacher
+
+class TeacherUpdateView(UpdateView):
+    model = Teacher
+    #! Share <model-name_form.html>, same template used for CreateForm
+    # * For a PK grab teacher and list the fields that you want user to update
+    fields = '__all__' #! specific field ['last_name']
+    success_url = reverse_lazy('classroom:list_teacher')
+
+class TeacherDeleteView(DeleteView):
+    model = Teacher
+    #! it is a form looks for template <model-name_detail.html>
+    success_url = reverse_lazy('classroom:list_teacher')
 
 class ContactFormView(FormView):
     form_class = ContactForm
