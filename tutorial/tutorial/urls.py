@@ -17,16 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
-
+from django.views.generic import RedirectView
 ################################################
 urlpatterns = [
     #! App level urls
+    path('catalog/',include('catalog.urls')),
     path('classroom/',include('classroom.urls')),
     path('my_app/',include('my_app.urls')), #* linking my_app route to project 
     path('office/',include('office.urls')), #* linking office route to project
     path('cars/',include('cars.urls')), #* linking cars route to project
     path('feedback/',include('cars_feedback.urls')), #* linking cars_feedback route to project
     #! Project Level urls
-    path('',views.projectIndex, name='Proj_Home'),
+    path('',RedirectView.as_view(url='catalog/'), name='Home'),
+    #path('',views.projectIndex, name='Proj_Home'),
     path('admin/', admin.site.urls),
 ]

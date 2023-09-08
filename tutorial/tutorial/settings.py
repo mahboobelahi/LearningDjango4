@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     #!my apps
-    'classroom.apps.ClassroomConfig',
+    'catalog.apps.CatalogConfig',
     'classroom.apps.ClassroomConfig',
     'my_app.apps.MyAppConfig',
     'office.apps.OfficeConfig',
