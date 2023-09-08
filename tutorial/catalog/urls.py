@@ -4,16 +4,10 @@ from . import views
 app_name = 'catalog'
 
 urlpatterns = [
-    path('', views.index_view, name='index'),
-    # path('greeting/', views.ThankYouView.as_view(), name='greeting'),
-    # path('contact/', views.ContactFormView.as_view(), name='contact'),
-    # path('create/', views.TeacherCreateView.as_view(), name='create_teacher'),
-    # path('list_teacher/', views.TeacherListView.as_view(), name='list_teacher'),
-    # path('teacher_detail/<int:pk>', views.TeacherDetailView.as_view(), name='detail_teacher'),
-    # path('update_teacher/<int:pk>', views.TeacherUpdateView.as_view(), name='update_teacher'),
-    # path('delete_teacher/<int:pk>', views.TeacherDeleteView.as_view(), name='delete_teacher'),
-
-
-
-
+    path('',views.index,name='index'),
+    path('create_book/',views.BookCreate.as_view(),name='create_book'),
+    path('book/<int:pk>/',views.BookDetail.as_view(),name='book_detail'),
+    path('my_view',views.my_view,name='my_view'),
+    path('signup/',views.SignUpView.as_view(),name='signup'),
+    path('profile/',views.CheckedOutBooksByUserView.as_view(),name='profile') 
 ]
