@@ -31,4 +31,5 @@ urlpatterns = [
     path('',RedirectView.as_view(url='catalog/'), name='Home'),
     #path('',views.projectIndex, name='Proj_Home'),
     path('admin/', admin.site.urls),
+    path('accounts/',include('django.contrib.auth.urls'))
 ]
